@@ -1,0 +1,21 @@
+# OpenAI Configuration
+OPENAI_API_KEY=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
+
+# Azure OpenAI (Optional - for Azure deployment)
+AZURE_OPENAI_ENDPOINT=https://usd-res-azure-openai.services.ai.azure.com/api/projects/usd-res-az-openai
+AZURE_OPENAI_KEY=8s4EwBcAutHg3qHAf0Xq2iYxxxuHP4fRhs3EaNwdJhnQvroDLb4xJQQJ99BLACYeBjFXJ3w3AAABACOGemdY
+AZURE_OPENAI_DEPLOYMENT=gpt-4o
+
+# Azure Configuration
+AZURE_SUBSCRIPTION_ID=823da17b-503b-4b46-bff1-5f4d66e2db69
+AZURE_RESOURCE_GROUP=usd-res-group
+AZURE_LOCATION=eastus
+AZURE_AI_PROJECT_NAME=agentic-ml-builder-proj
+
+# OneDrive Configuration (Optional)
+ONEDRIVE_CLIENT_ID=f9a27ef6-26bd-40c2-a063-b80411326d30
+ONEDRIVE_CLIENT_SECRET=7ea14be2-9690-4cbd-b910-797b2aebba50
+ONEDRIVE_TENANT_ID=ef05ef2c-e976-4339-a673-f1f19e6e8d28
+
+# MCP Configuration
+MCP_SERVER_PORT=8080

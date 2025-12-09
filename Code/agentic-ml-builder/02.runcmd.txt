@@ -1,0 +1,11 @@
+powershell.exe -ExecutionPolicy Bypass -File .\run.ps1 --input input/Fashion-MNIST.json --output output
+
+powershell.exe -ExecutionPolicy Bypass -File .\run.ps1 --input input/scene_dataset.json --output output
+
+powershell.exe -ExecutionPolicy Bypass -File .\run.ps1 --input input/lyrics_dataset.json --output output
+
+powershell.exe -ExecutionPolicy Bypass -File .\run.ps1 --input input/birds_dataset.json --output output
+
+
+
+

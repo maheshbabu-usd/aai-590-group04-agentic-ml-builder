@@ -1,0 +1,58 @@
+# Agentic ML Builder Configuration
+
+openai:
+  model: "gpt-4o"
+  temperature: 0.7
+  max_tokens: 4000
+  rate_limit: 20  # requests per minute
+
+azure:
+  ai_foundry:
+    location: "eastus"
+    model_catalog:
+      - "gpt-4o"
+      - "text-embedding-3-large"
+    workspace_name: "ml-builder-workspace"
+  storage:
+    container_name: "ml-projects"
+  
+rag:
+  embedding_model: "text-embedding-3-large"
+  chunk_size: 512
+  chunk_overlap: 50
+  collection_name: "ml_templates"
+  top_k: 5
+
+agents:
+  spec_agent:
+    system_prompt: "You are an expert ML project specification analyzer. Analyze requirements and provide structured recommendations."
+  scaffold_agent:
+    system_prompt: "You are an expert ML code generator creating production-ready scaffolds with best practices."
+  test_agent:
+    system_prompt: "You are an expert in ML testing and validation. Generate comprehensive test suites."
+  validator_agent:
+    system_prompt: "You are an expert code validator and quality checker."
+  mlops_agent:
+    system_prompt: "You are an MLOps expert creating deployment configurations for Azure and local environments."
+  orchestration_agent:
+    system_prompt: "You are an orchestration expert managing ML workflows in Azure AI Foundry."
+
+mcp:
+  server_port: 8080
+  timeout: 30
+  max_connections: 10
+
+output:
+  local_path: "./output"
+  onedrive_folder: "/AgenticMLBuilder/output"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/ml_builder.log"
+
+validation:
+  run_lint: true
+  run_tests: true
+  use_docker: true
+  timeout: 300
