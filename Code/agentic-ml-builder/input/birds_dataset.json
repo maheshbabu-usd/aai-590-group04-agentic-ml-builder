@@ -1,0 +1,9 @@
+﻿{
+  "project_name": "bird_classifier",
+  "purpose": "Bird species classification",
+  "data_type": "audio",
+  "dataset_url": "https://www.openml.org/api/v1/json/data/40588",
+  "ml_task": "classification",
+  "target_environment": "azure",
+  "models": ["cnn", "transformer"]
+}

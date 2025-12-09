@@ -1,0 +1,9 @@
+﻿{
+  "project_name": "lyrics_sentiment",
+  "purpose": "Lyrics sentiment analysis",
+  "data_type": "text",
+  "dataset_url": "https://www.openml.org/api/v1/json/data/43597",
+  "ml_task": "regression",
+  "target_environment": "local",
+  "models": ["bert", "lstm"]
+}

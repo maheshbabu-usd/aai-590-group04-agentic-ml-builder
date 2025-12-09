@@ -1,0 +1,77 @@
+{
+  "specification": {
+    "project_name": "lyrics_sentiment",
+    "ml_task": "regression",
+    "data_modality": "text",
+    "recommended_models": [
+      "bert",
+      "lstm"
+    ],
+    "required_preprocessing": [
+      "text tokenization",
+      "padding sequences",
+      "lowercasing"
+    ],
+    "evaluation_metrics": [
+      "mean_squared_error",
+      "r2_score"
+    ],
+    "deployment_target": "local",
+    "estimated_complexity": "high",
+    "dataset_info": {
+      "source": "https://www.openml.org/api/v1/json/data/43597",
+      "size_estimate": "medium",
+      "features": "lyrics text and sentiment scores"
+    },
+    "infrastructure_requirements": {
+      "compute": "gpu",
+      "memory_gb": 16,
+      "storage_gb": 10
+    },
+    "recommended_frameworks": [
+      "pytorch",
+      "tensorflow"
+    ],
+    "estimated_training_time": "several hours",
+    "best_practices": [
+      "Use Dataset class from torch.utils.data",
+      "Track all experiments with MLflow",
+      "Tune learning rate and batch size"
+    ],
+    "original_spec": {
+      "project_name": "lyrics_sentiment",
+      "purpose": "Lyrics sentiment analysis",
+      "data_type": "text",
+      "dataset_url": "https://www.openml.org/api/v1/json/data/43597",
+      "ml_task": "regression",
+      "target_environment": "local",
+      "models": [
+        "bert",
+        "lstm"
+      ]
+    }
+  },
+  "generated_files": [
+    "train.py",
+    "model.py",
+    "data_loader.py",
+    "config.py",
+    "requirements.txt",
+    "README.md",
+    "Dockerfile",
+    ".gitignore"
+  ],
+  "test_files": [
+    "test_model.py",
+    "test_dataloader.py",
+    "test_training.py",
+    "conftest.py",
+    "pytest.ini"
+  ],
+  "mlops_files": [
+    "azure_ml_config.yml",
+    "deployment_config.json",
+    "mlflow_config.py",
+    "monitoring_config.py"
+  ]
+}

@@ -1,0 +1,46 @@
+# Azure ML Job Configuration
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+type: command
+experiment_name: bird_classifier
+display_name: bird_classifier
+description: Training job for classification task
+
+compute: azureml:gpu-cluster
+
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-cuda11.1-cudnn8-ubuntu20.04
+  conda_file: conda_env.yml
+
+code: .
+
+command: >-
+  python train.py
+  --epochs ${{inputs.epochs}}
+  --batch-size ${{inputs.batch_size}}
+  --learning-rate ${{inputs.learning_rate}}
+
+inputs:
+  epochs:
+    type: integer
+    default: 10
+  batch_size:
+    type: integer
+    default: 32
+  learning_rate:
+    type: number
+    default: 0.001
+
+outputs:
+  model_output:
+    type: uri_folder
+    mode: rw_mount
+
+resources:
+  instance_count: 1
+  instance_type: Standard_NC6s_v3
+
+tags:
+  task: classification
+  framework: pytorch
+  generated_by: agentic_ml_builder

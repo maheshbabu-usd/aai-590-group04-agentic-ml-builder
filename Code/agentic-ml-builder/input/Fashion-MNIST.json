@@ -1,0 +1,235 @@
+{
+"project_name": "fashion-mnist-image-classification",
+"purpose": "Code-first pipeline for training, validating, and testing an image classification model on the Fashion-MNIST dataset (28x28 grayscale, 10 classes).",
+"sources": [
+{
+"name": "Zalando Research — Fashion-MNIST (GitHub)",
+"ref": "([GitHub][1])"
+},
+{
+"name": "Kaggle — Fashion-MNIST dataset",
+"ref": "([Kaggle][2])"
+}
+],
+"dataset": {
+"canonical_files": [
+{
+"filename": "train-images-idx3-ubyte.gz",
+"role": "train_images",
+"count": 60000,
+"md5": "8d4fb7e6c68d591d4c3dfef9ec88bf0d"
+},
+{
+"filename": "train-labels-idx1-ubyte.gz",
+"role": "train_labels",
+"count": 60000,
+"md5": "25c81989df183df01b3e8a0aad5dffbe"
+},
+{
+"filename": "t10k-images-idx3-ubyte.gz",
+"role": "test_images",
+"count": 10000,
+"md5": "bef4ecab320f06d8554ea6380940ec79"
+},
+{
+"filename": "t10k-labels-idx1-ubyte.gz",
+"role": "test_labels",
+"count": 10000,
+"md5": "bb300cfdad3c16e7a12a480ee83cd310"
+}
+],
+"label_map": {
+"0": "T-shirt/top",
+"1": "Trouser",
+"2": "Pullover",
+"3": "Dress",
+"4": "Coat",
+"5": "Sandal",
+"6": "Shirt",
+"7": "Sneaker",
+"8": "Bag",
+"9": "Ankle boot"
+},
+"image_properties": {
+"height": 28,
+"width": 28,
+"channels": 1,
+"dtype_on_load": "uint8 (0-255)",
+"canonical_format": "IDX (same structure as MNIST)"
+},
+"load_instructions": {
+"recommended_loader": "utils/mnist_reader.load_mnist(path, kind='train'|'t10k')",
+"post_load_shape": "(N, 28, 28)",
+"citation": "([GitHub][1])"
+}
+},
+"data_split_and_validation": {
+"train": 60000,
+"test": 10000,
+"train_val_split_from_train": {
+"strategy": "stratified",
+"ratio": "90:10 (train:val) by default",
+"seed": 42
+},
+"validation_role": "early-stopping, model selection, checkpoint selection"
+},
+"preprocessing": {
+"steps_ordered": [
+"decode_idx_to_numpy",
+"reshape to (N, 1, 28, 28) or (N, 28, 28, 1) depending on framework",
+"astype float32",
+"normalize pixel values to [0.0,1.0]",
+"optional: standardize using dataset mean/std (config flag)"
+],
+"augmentation_config": {
+"enabled": true,
+"transforms": {
+"random_horizontal_flip": { "prob": 0.5, "note": "semantically acceptable" },
+"random_shift": { "max_pixels": 2 },
+"random_rotation": { "max_degrees": 10 },
+"brightness_contrast_jitter": { "max_delta": 0.1 }
+},
+"apply_on": "train only",
+"seeded": true
+}
+},
+"model_spec": {
+"framework": "PyTorch (default) — code should be framework-abstraction friendly",
+"baseline_architecture": {
+"type": "simple_cnn",
+"input_shape": [1, 28, 28],
+"layers": [
+{ "conv": { "out_channels": 32, "kernel_size": 3, "stride": 1, "padding": 1 }, "activation": "ReLU" },
+{ "conv": { "out_channels": 64, "kernel_size": 3, "stride": 1, "padding": 1 }, "activation": "ReLU" },
+{ "pool": "MaxPool2d", "kernel_size": 2 },
+{ "dropout": 0.25 },
+{ "flatten": true },
+{ "fc": { "units": 128 }, "activation": "ReLU" },
+{ "dropout": 0.5 },
+{ "fc": { "units": 10 }, "activation": "Softmax (for probabilities)" }
+],
+"initialization": "kaiming_normal for conv; xavier_uniform for linear"
+},
+"advanced_options_allowed": [
+"small_resnet_variant (adapted for 28x28)",
+"deeper_cnn with BatchNorm and controlled capacity",
+"upsample + transfer_learning (only if documented and justified)"
+]
+},
+"training_config": {
+"device_priority": ["cuda", "cpu"],
+"random_seed": 42,
+"batch_size": 128,
+"num_epochs": 50,
+"optimizer": {
+"name": "Adam",
+"params": { "lr": 0.001, "weight_decay": 1e-4 }
+},
+"loss": "CrossEntropyLoss (expects raw logits)",
+"lr_scheduler": {
+"type": "ReduceLROnPlateau",
+"monitor": "val_loss",
+"factor": 0.5,
+"patience_epochs": 3,
+"min_lr": 1e-6
+},
+"gradient_handling": {
+"clip_grad_norm": 5.0,
+"mixed_precision": false
+},
+"checkpointing": {
+"save_best_by": "val_accuracy",
+"save_best_only": true,
+"checkpoint_dir": "artifacts/checkpoints",
+"frequency_epochs": 1,
+"keep_last_n": 5
+},
+"logging_and_tracking": {
+"experiment_logger": "MLflow or Weights & Biases (configurable)",
+"log_every_n_steps": 50,
+"artifacts_to_log": ["best_model.pt", "training_metrics.json", "confusion_matrix.png", "training_config.json"]
+}
+},
+"validation_and_testing": {
+"validation": {
+"purpose": "hyperparameter selection, early stopping",
+"metrics": ["accuracy", "loss"],
+"evaluation_frequency": "end_of_epoch"
+},
+"testing": {
+"procedure": "load checkpoint selected by best validation metric; run single-pass evaluation on canonical test set (t10k)",
+"metrics_to_report": ["accuracy", "precision_macro", "recall_macro", "f1_macro", "per_class_recall", "confusion_matrix"],
+"artifacts": ["test_metrics.json", "confusion_matrix.png", "per_class_error_samples.zip"]
+}
+},
+"experiment_reproducibility": {
+"env": {
+"python_version": "3.10+",
+"core_dependencies": {
+"pytorch": ">=1.13",
+"torchvision": ">=0.14",
+"numpy": ">=1.23",
+"scikit-learn": ">=1.1",
+"mlflow_or_wandb": "latest-stable"
+},
+"requirements_file": "requirements.txt"
+},
+"randomness_control": {
+"seed_all": true,
+"seeds": { "numpy": 42, "torch": 42, "python_random": 42 },
+"deterministic_flags": { "torch_deterministic": false, "cudnn_benchmark": false }
+}
+},
+"io_and_serialization": {
+"model_artifact_format": ["torchscript (.pt)", "state_dict (.pt)"],
+"dataset_cache_format": [".npy shards" , "optional: TFRecord for TF pipelines"],
+"inference_contract": {
+"input": { "shape": [28, 28], "dtype": "float32", "value_range": [0.0, 1.0] },
+"output": { "probabilities": { "size": 10 }, "predicted_label": "int" }
+}
+},
+"scripts_and_cli_contracts": {
+"entry_scripts": {
+"train.py": "train with config file; accepts --config, --run-name, --resume",
+"eval.py": "evaluate a checkpoint on val or test; outputs metrics and artifacts",
+"predict.py": "single-image inference CLI for local testing",
+"utils/mnist_reader.py": "canonical loader; used by train/eval"
+},
+"config_format": "YAML or JSON (training hyperparams, paths, augmentation flags, logging backend)",
+"example_cli": "python train.py --config configs/train.yaml --run-name baseline-001"
+},
+"quality_and_tests": {
+"unit_tests": ["loader_test.py (counts & md5)", "preprocess_test.py (shape & range)", "model_forward_test.py (output shape)"],
+"integration_tests": ["smoke_train.py (1 epoch, CPU)", "inference_api_smoke.py"]
+},
+"default_paths": {
+"data_dir": "data/fashion",
+"artifacts_dir": "artifacts",
+"logs_dir": "logs"
+},
+"minimal_deliverables_for_code_generation": {
+"required_files": [
+"train.py",
+"eval.py",
+"predict.py",
+"models/baseline_cnn.py",
+"utils/mnist_reader.py",
+"configs/train.yaml",
+"requirements.txt",
+"README.md"
+],
+"required_config_entries": [
+"data_dir",
+"batch_size",
+"num_epochs",
+"optimizer.lr",
+"optimizer.weight_decay",
+"augmentation.enabled",
+"checkpoint_dir",
+"seed",
+"device"
+]
+}
+}
+
+

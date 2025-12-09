@@ -1,0 +1,76 @@
+{
+  "specification": {
+    "project_name": "scene_classifier",
+    "ml_task": "classification",
+    "data_modality": "image",
+    "recommended_models": [
+      "resnet",
+      "efficientnet"
+    ],
+    "required_preprocessing": [
+      "data_augmentation",
+      "normalization"
+    ],
+    "evaluation_metrics": [
+      "accuracy",
+      "F1-score"
+    ],
+    "deployment_target": "local",
+    "estimated_complexity": "medium",
+    "dataset_info": {
+      "source": "OpenML",
+      "size_estimate": "large",
+      "features": "multi-label scene images"
+    },
+    "infrastructure_requirements": {
+      "compute": "gpu",
+      "memory_gb": 16,
+      "storage_gb": 50
+    },
+    "recommended_frameworks": [
+      "pytorch"
+    ],
+    "estimated_training_time": "several hours to a day",
+    "best_practices": [
+      "Use Dataset class from torch.utils.data",
+      "Apply data transforms in __getitem__",
+      "Use MLflow for experiment tracking",
+      "Pin memory for GPU training"
+    ],
+    "original_spec": {
+      "project_name": "scene_classifier",
+      "purpose": "Multi-label scene classification",
+      "data_type": "image",
+      "dataset_url": "https://www.openml.org/api/v1/json/data/40595",
+      "ml_task": "classification",
+      "target_environment": "local",
+      "models": [
+        "resnet",
+        "efficientnet"
+      ]
+    }
+  },
+  "generated_files": [
+    "train.py",
+    "model.py",
+    "data_loader.py",
+    "config.py",
+    "requirements.txt",
+    "README.md",
+    "Dockerfile",
+    ".gitignore"
+  ],
+  "test_files": [
+    "test_model.py",
+    "test_dataloader.py",
+    "test_training.py",
+    "conftest.py",
+    "pytest.ini"
+  ],
+  "mlops_files": [
+    "azure_ml_config.yml",
+    "deployment_config.json",
+    "mlflow_config.py",
+    "monitoring_config.py"
+  ]
+}

@@ -1,0 +1,9 @@
+﻿{
+  "project_name": "scene_classifier",
+  "purpose": "Multi-label scene classification",
+  "data_type": "image",
+  "dataset_url": "https://www.openml.org/api/v1/json/data/40595",
+  "ml_task": "classification",
+  "target_environment": "local",
+  "models": ["resnet", "efficientnet"]
+}

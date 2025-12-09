@@ -1,0 +1,34 @@
+{
+  "project_name": "bird_classifier",
+  "version": "1.0.0",
+  "deployment_targets": {
+    "local": {
+      "enabled": true,
+      "port": 8000,
+      "workers": 4
+    },
+    "azure": {
+      "enabled": true,
+      "resource_group": "usd-res-group",
+      "workspace": "agentic-ml-builder-proj",
+      "compute_target": "gpu-cluster",
+      "instance_type": "Standard_NC6s_v3"
+    }
+  },
+  "model_config": {
+    "framework": "pytorch",
+    "input_type": "audio",
+    "task": "classification",
+    "metrics": [
+      "accuracy",
+      "precision",
+      "recall"
+    ]
+  },
+  "monitoring": {
+    "enabled": true,
+    "log_level": "INFO",
+    "mlflow_tracking": true,
+    "tensorboard": true
+  }
+}

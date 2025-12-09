@@ -1,0 +1,80 @@
+{
+  "specification": {
+    "project_name": "bird_classifier",
+    "ml_task": "classification",
+    "data_modality": "audio",
+    "recommended_models": [
+      "cnn",
+      "transformer"
+    ],
+    "required_preprocessing": [
+      "audio feature extraction",
+      "normalization"
+    ],
+    "evaluation_metrics": [
+      "accuracy",
+      "precision",
+      "recall"
+    ],
+    "deployment_target": "azure",
+    "estimated_complexity": "medium",
+    "dataset_info": {
+      "source": "https://www.openml.org/api/v1/json/data/40588",
+      "size_estimate": "medium",
+      "features": "audio recordings of bird species"
+    },
+    "infrastructure_requirements": {
+      "compute": "gpu",
+      "memory_gb": 16,
+      "storage_gb": 50
+    },
+    "recommended_frameworks": [
+      "pytorch",
+      "tensorflow"
+    ],
+    "estimated_training_time": "several hours to a few days",
+    "best_practices": [
+      "Create environment with dependencies on Azure",
+      "Use DataLoader with num_workers for parallel loading",
+      "Use MLflow for experiment tracking",
+      "Tune learning rate and batch size",
+      "Register model after training",
+      "Create endpoint for inference on Azure"
+    ],
+    "original_spec": {
+      "project_name": "bird_classifier",
+      "purpose": "Bird species classification",
+      "data_type": "audio",
+      "dataset_url": "https://www.openml.org/api/v1/json/data/40588",
+      "ml_task": "classification",
+      "target_environment": "azure",
+      "models": [
+        "cnn",
+        "transformer"
+      ]
+    }
+  },
+  "generated_files": [
+    "train.py",
+    "model.py",
+    "data_loader.py",
+    "config.py",
+    "requirements.txt",
+    "README.md",
+    "Dockerfile",
+    ".gitignore"
+  ],
+  "test_files": [
+    "test_model.py",
+    "test_dataloader.py",
+    "test_training.py",
+    "conftest.py",
+    "pytest.ini"
+  ],
+  "mlops_files": [
+    "azure_ml_config.yml",
+    "deployment_config.json",
+    "mlflow_config.py",
+    "monitoring_config.py"
+  ]
+}
