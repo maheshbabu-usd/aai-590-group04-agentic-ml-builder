@@ -1,0 +1,10 @@
+openai
+streamlit
+python-dotenv
+faiss-cpu
+numpy
+pandas
+duckduckgo-search
+openml
+datasets
+kaggle
