@@ -1,4 +1,4 @@
-# **AAI-590 Final Capstone Project - Agentic ML Builder**
+# **AAI-590 Final Capstone Project**
 
 # Agentic ML Builder
 
