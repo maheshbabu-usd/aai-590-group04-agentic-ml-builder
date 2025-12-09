@@ -88,7 +88,7 @@ To set up this project
    cd agentic-ml-builder
    ```
 
-3. **Setup google colab enviornment**
+3. **To setup and run the project**
    Follow the instruction in the README.md in the root folder
    
 5. **Install Dependencies:**
