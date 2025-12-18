@@ -9,10 +9,7 @@ This Capstone Project is a part of the AAI-590 course in the Applied Artificial 
 **Project Objective:**
 
 The main objective of this project is to Convert ML Project Specification involving weeks of engineering effort into fully functional ML Project Pipeline in minutes, using Agentic AI code generation guided by templates and best practices.
-
 Our goal is to shrink that whole process from weeks to minutes. Imagine giving a simple project description and instantly getting a production-ready ML pipeline built on best-practice templates.
-
-
 
 **Partner(s)/Contributor(s):**
 
@@ -21,20 +18,28 @@ Our goal is to shrink that whole process from weeks to minutes. Imagine giving a
 
 **Project Description:**
 
-Agentic ML Builder is a conversational, agent-orchestrated ML Builder that turns high-level requirements into enterprise-grade ML and MLOps pipelines at scale using Generative Agentic AI including templated context for code/ document generation using RAG.
-
+Agentic ML Builder is a conversational, agent-orchestrated ML Builder that turns high-level requirements into enterprise-grade ML and MLOps pipelines at scale using Generative AI & Agentic AI, including templated context for code / document generation using RAG.
 
 **Challenges:**
-
-  - Too much time to convert ML Project Idea / Spec  fully functional ML pipeline
+  - Too much time to convert ML Project Idea / Spec -> fully functional ML pipeline
   - No unified path from requirements to production-ready pipelines.
   - Manual and inconsistent ML model exploration, model setup / MLOps slows delivery.
   - Hinders experimentation, bottlenecks in onboarding, scalability. 
 
-
+**Business Overview**
+  - **Accelerated ML Engineering**
+      The platform transforms natural-language project descriptions into ready-to-run ML pipelines, reducing lead times from days or weeks to minutes.
+  - **Reduced Engineering Overhead**
+      Automated specification, model selection, code generation, and validation dramatically reduce the operational burden on ML engineers.
+  - **Production-Ready MLOps Integration**
+      Generated scaffolds include tests, CI workflows, and deployment configurations suitable for enterprise environments including Azure ML and GitHub Actions.
+  **ROI**
+    - Automates repetitive ML setup tasks, saving 20 to 40 hours per project.
+    - Ensures standardized, reproducible, and validated MLOps structures.
+    - Bridges skill gaps between data scientists and DevOps engineers.
+    - Seamlessly integrates with Azure AI Foundry and GitHub Actions.
 
 **Methods Used:**
-
   - Code and Document Generation using Agents
   - Context from Code Templates and Best Practices
   - Multi-Agent Orchestration and Communication
@@ -54,9 +59,11 @@ Agentic ML Builder is a conversational, agent-orchestrated ML Builder that turns
 
 
 
-  **Frameworks:** PyTorch, TensorFlow
+  **Frameworks:** PyTorch, TensorFlow, Scikit-Learn
 
-  **Libraries:** / Model: MobileNetV2, Stable Diffusion.
+  **Libraries:** / Model: PyTorch CNN Architectures (Vision Models)
+                          Transformer Based Models (NLP Tasks, Sentiment Analysis)
+                          XGBoost Implementations (Clustering Algorithms, Ensemble methods)
 
   **Tools:** NVIDIA CUDA for GPU acceleration
 
@@ -64,11 +71,9 @@ Agentic ML Builder is a conversational, agent-orchestrated ML Builder that turns
 
   **Hardware:** GPUs (e.g., NVIDIA RTX 30xx series, NVIDIA A100, NVIDIA L4, Tesla T4) for real-time processing and training large models.
 
-
 **Dataset:**
     
 Sample Image, Audio, Text and Video datasets from OpenML, Kaggle
-
 
 **Installation and Execution**
 
@@ -90,6 +95,12 @@ To set up this project
 
 3. **To setup and run the project**
    Follow the instruction in the README.md in the root folder
+   For a successful run and project code generation
+     - Setting up the OpenAI Key is mandatory for using gpt-4o for code generation
+     - Azure OpenAI and Agentic AI (Optional) if running locally
+     - Ensure that the input and output folders created and available locally
+     - Ensure the input project scope specification is available in the input folder
+     - Follow the instruction in the 01.README.md in the root folder
    
 5. **Install Dependencies:**
    Install the required Python packages using `pip`:
@@ -99,7 +110,7 @@ To set up this project
 
 **Acknowledgments:**
 
-We would like to thank Prof. Dr. Zahid Wani for his invaluable guidance and mentorship throughout the course. 
+We would like to thank **Prof. Dr. Zahid Wani** for his invaluable guidance and mentorship throughout the course. 
 
 **References:**
 
