@@ -21,25 +21,30 @@ Our goal is to shrink that whole process from weeks to minutes. Imagine giving a
 Agentic ML Builder is a conversational, agent-orchestrated ML Builder that turns high-level requirements into enterprise-grade ML and MLOps pipelines at scale using Generative AI & Agentic AI, including templated context for code / document generation using RAG.
 
 **Challenges:**
+
   - Too much time to convert ML Project Idea / Spec -> fully functional ML pipeline
   - No unified path from requirements to production-ready pipelines.
   - Manual and inconsistent ML model exploration, model setup / MLOps slows delivery.
   - Hinders experimentation, bottlenecks in onboarding, scalability. 
 
 **Business Overview**
+
   - **Accelerated ML Engineering**
       The platform transforms natural-language project descriptions into ready-to-run ML pipelines, reducing lead times from days or weeks to minutes.
   - **Reduced Engineering Overhead**
       Automated specification, model selection, code generation, and validation dramatically reduce the operational burden on ML engineers.
   - **Production-Ready MLOps Integration**
       Generated scaffolds include tests, CI workflows, and deployment configurations suitable for enterprise environments including Azure ML and GitHub Actions.
+    
   **ROI**
+  
     - Automates repetitive ML setup tasks, saving 20 to 40 hours per project.
     - Ensures standardized, reproducible, and validated MLOps structures.
     - Bridges skill gaps between data scientists and DevOps engineers.
     - Seamlessly integrates with Azure AI Foundry and GitHub Actions.
 
 **Methods Used:**
+
   - Code and Document Generation using Agents
   - Context from Code Templates and Best Practices
   - Multi-Agent Orchestration and Communication
@@ -48,6 +53,7 @@ Agentic ML Builder is a conversational, agent-orchestrated ML Builder that turns
   - Developer Productivity & CI/CD
 
 **Technologies:**
+
   - Streamlit conversational intake
   - MCP for multi-agent communication and orchestration
   - Agentic AI and Agents for Intelligence and Generation
@@ -82,18 +88,21 @@ This project can be use from the Web UI and well as VS Code / Powershell from lo
 To set up this project
 
 1. **Clone the Repository:**
+   
    Open a terminal and run the following command to clone the repository to your local machine:
    ```bash
    git clone https://github.com/maheshbabu-usd/aai-590-group04-agentic-ml-builder/tree/main/Code/agentic-ml-builder
    ```
 
 2. **Navigate to the Project Directory:**
+   
    Change into the project directory:
    ```bash
    cd agentic-ml-builder
    ```
 
 3. **To setup and run the project**
+   
    Follow the instruction in the README.md in the root folder
    For a successful run and project code generation
      - Setting up the OpenAI Key is mandatory for using gpt-4o for code generation
@@ -102,7 +111,8 @@ To set up this project
      - Ensure the input project scope specification is available in the input folder
      - Follow the instruction in the 01.README.md in the root folder
    
-5. **Install Dependencies:**
+4. **Install Dependencies:**
+   
    Install the required Python packages using `pip`:
    ```bash
    pip install -r requirements.txt
